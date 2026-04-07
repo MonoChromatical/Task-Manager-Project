@@ -1,29 +1,35 @@
-'''A buggy Task Manager that provides an opportunity to debug code by both reasoning about it and stepping through using pdb.
+"""
+Task Manager Module
+==================
 
-The program has a number of bugs that are introduced one at a time.
-
-The goal is to find and fix the bugs.
-
-Ensure you step through this program in pdb only to understand how the program works and to find the bugs.'''
+A simple command-line task manager that supports:
+- Adding tasks
+- Marking tasks as completed
+- Deleting tasks
+- Sorting tasks
+- Searching tasks
+"""
 
 # Once debugged add some documentation examples to help the next programmer!
 import sys
-import pdb
+# import pdb
 # import os
 
+
 def add_task(tasks, task):
-    breakpoint()
-    task.append((task, False))
+    # breakpoint()
+    tasks.append((task, False))
 
 def mark_task_completed(tasks, index):
     if 0 <= index < len(tasks):
-        tasks[index] = True
+        desc, _ = tasks[index]
+        tasks[index] = (desc, True)
     else:
         print("Invalid task index.")
 
 def delete_task(tasks, index):
     if 0 <= index < len(tasks):
-        tasks.remove(tasks[index])
+        del (tasks[index])
     else:
         print("Invalid task index.")
 
@@ -33,7 +39,7 @@ def list_tasks(tasks):
         return
 
     for index, task in enumerate(tasks):
-        print(f"{index}. {'[X]' if task else '[ ]'} {task[0]}")
+        print(f"{index}. {'[X]' if task[1] else '[ ]'} {task[0]}")
 
 def sort_tasks(tasks):
     tasks.sort(key=lambda x: x[0])
@@ -52,7 +58,7 @@ def binary_search(tasks, target):
 
 def main():
     tasks = []
-    breakpoint()
+    # breakpoint()
 
     while True:
         print("\n1. Add Task")
@@ -69,7 +75,7 @@ def main():
             task = input("Enter task description: ")
             add_task(tasks, task)
         elif choice == "2":
-            pdb.set_trace()
+            # pdb.set_trace()
             index = int(input("Enter task index to mark as completed: "))
             mark_task_completed(tasks, index)
         elif choice == "3":
@@ -81,6 +87,7 @@ def main():
             sort_tasks(tasks)
             print("Tasks sorted.")
         elif choice == "6":
+            sort_tasks(tasks)
             target = input("Enter task description to search: ")
             index = binary_search(tasks, target)
             if index != -1:

@@ -18,9 +18,29 @@ import sys
 
 def add_task(tasks, task):
     # breakpoint()
+    """
+       Add a new task.
+
+       :param tasks: list of tasks
+       :param task: task description
+       :return: None
+
+       Example:
+       >>> tasks = []
+       >>> add_task(tasks, "Buy milk")
+       >>> tasks
+       [('Buy milk', False)]
+       """
     tasks.append((task, False))
 
 def mark_task_completed(tasks, index):
+    """
+        Mark a task as completed.
+
+        :param tasks: list of tasks
+        :param index: task index
+        :return: None
+        """
     if 0 <= index < len(tasks):
         desc, _ = tasks[index]
         tasks[index] = (desc, True)
@@ -28,12 +48,25 @@ def mark_task_completed(tasks, index):
         print("Invalid task index.")
 
 def delete_task(tasks, index):
+    """
+     Delete a task.
+
+     :param tasks: list of tasks
+     :param index: task index
+     :return: None
+     """
     if 0 <= index < len(tasks):
         del (tasks[index])
     else:
         print("Invalid task index.")
 
 def list_tasks(tasks):
+    """
+      Display tasks.
+
+      :param tasks: list of tasks
+      :return: None
+      """
     if not tasks:
         print("No tasks available.")
         return
@@ -42,9 +75,22 @@ def list_tasks(tasks):
         print(f"{index}. {'[X]' if task[1] else '[ ]'} {task[0]}")
 
 def sort_tasks(tasks):
+    """
+       Sort tasks alphabetically.
+
+       :param tasks: list of tasks
+       :return: None
+       """
     tasks.sort(key=lambda x: x[0])
 
 def binary_search(tasks, target):
+    """
+       Search for a task.
+
+       :param tasks: list of tasks (must be sorted)
+       :param target: task description
+       :return: index or -1
+       """
     low, high = 0, len(tasks) - 1
     while low <= high:
         mid = (low + high) // 2

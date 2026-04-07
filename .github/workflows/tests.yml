@@ -1,0 +1,15 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+
+      - run: pip install coverage
+      - run: coverage run -m unittest discover
+      - run: coverage report

@@ -12,8 +12,12 @@ A simple command-line task manager that supports:
 
 # Once debugged add some documentation examples to help the next programmer!
 import sys
+import subprocess
 # import pdb
 # import os
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 
 def add_task(tasks, task):
